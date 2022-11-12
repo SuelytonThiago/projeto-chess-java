@@ -23,6 +23,19 @@ public class Board {
 		return columns;
 	}
 	
+	public Piece removePiece(Position position) {
+		if(!positionExists(position)) {
+			throw new BoardException("Posição não existente no tabuleiro");
+		}
+		if(piece(position) == null) {
+			return null;
+		}
+		Piece aux = piece(position);
+		aux.position = null;
+		pieces[position.getRow()][position.getColum()] = null;
+		return aux;
+	}
+	
 	public Piece piece(int row,int colum) {
 		if(!positionExists(row, colum)){
 			throw new BoardException("Posição não existente no tabuleiro");
